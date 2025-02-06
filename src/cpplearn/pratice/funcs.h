@@ -157,6 +157,13 @@ void c20ifPratice(){
     }
 }
 
+/*
+    在 C++ 中，结构体（struct）和类（class）本质上是一样的，
+    唯一的区别是默认的成员访问权限不同。
+    类的默认成员是 private 的，
+    而结构体的默认成员是 public 的。
+    因此，结构体也可以拥有构造函数、析构函数、成员函数等特性，和类没有区别。
+*/
 struct S_User {
     int age;
     string name;
@@ -360,23 +367,33 @@ void namespacePra(){
 }
 
 /* 继承 */
-// public 指定继承的属性和方法为public，否则默认private
+// public 指定继承的属性和方法为public，否则默认private，但是父类中private还是private
 class Teacher : public Human{
+    // 私有属性(默认)
+    // 也可以显示表示
+    private:
+    string school;
+
     // 继承构造函数
     public:
     Teacher():Human(){}
     Teacher(int a,string n) : Human(a, n){}
     // 自有构造函数
+    // 构造函数体内赋值
     Teacher(int a,string n,string s){
         age = a;
         // can not assess father private val
         // name = n;
         school = s;
     }
-    // 私有属性
-    string school;
+    // 初始化列表赋值
+    Teacher(string n) : Human(n) {}
+
     string get_school(){
         return school;
+    }
+    void set_school(string s){
+        school = s;
     }
 
     // 重写虚函数
@@ -396,11 +413,26 @@ class Teacher : public Human{
         teacher.age = this->age + t.age;
         return teacher;
     }
+    // 作用域解析运算符
+    void print_name(){
+        // 可以使用作用域解析运算符 :: 来引用类的静态成员
+        Human::sth = "hello";
+        cout << Human::sth << endl;
+        // 可以使用作用域解析运算符 :: 来使用类的静态函数
+        Human::print_sth();
+    }
 };
+// 可以使用作用域解析运算符 :: 来定义类的静态函数  和 构造函数
+void Human::print_sth() {
+    cout << Human::sth << endl;
+}
+
 void classPratice(){
     // Human user(18,"kechen");
     Teacher ke(22,"kehcen");
-    ke.school = "xinghua";
+    ke.set_school("xinghua");
+    // 父类中的方法，被继承为public
+    ke.print_sth();
     // cout << user.get_name() << " is " << user.get_age() << endl;
     cout << ke.get_name() << " is " << ke.get_age() << " work at " << ke.get_school() << endl;
 }
@@ -418,7 +450,7 @@ void print_school(Teacher t){
 void friendFuncPratice(){
     /* 定义在类作用域外的函数，可以访问类的内部变量 */
     Teacher ke(22,"ke");
-    ke.school = "xing";
+    ke.set_school("xing");
     print_school(ke);
 }
 
@@ -454,18 +486,21 @@ void lambdaPratice(){
 }
 
 double divide(double a, double b){
-    if (a == 0){
-        throw "Cannot divide by 0!\n";
+    if (b == 0){
+        // 抛出的异常类型要和捕获的相同
+        throw string("Cannot divide by 0!\n");
     }
     return a/b;
 }
 void exceptionhandle(){
     double a;
     double b;
+    cout << "please input two number: ";
     cin >> a >> b;
+    cout << "a = " << a << ", b = " << b << endl;
     try{
-        cout << divide(a, b) << endl;
-    } catch (const string err){
+        cout << "a/b = " << divide(a, b) << endl;
+    } catch (const string err){  // 捕获string类型的异常
         cout << err << endl;
     }
 }

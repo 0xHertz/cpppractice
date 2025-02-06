@@ -23,11 +23,11 @@ d_node* create_node(int data){
 }
 
 // 定义前插函数,我的实现,是错的
-d_node** m_push_front(d_node* cur, int data){
-    d_node* new_node = create_node(data);
-    new_node->next = cur;
-    return &new_node;
-}
+// d_node** m_push_front(d_node* cur, int data){
+//     d_node* new_node = create_node(data);
+//     new_node->next = cur;
+//     return &new_node;
+// }
 // 前插函数，示例实现
 void ex_push_front(d_node** headptr, int data){
     d_node* new_node = create_node(data);
@@ -62,13 +62,15 @@ void print_list(d_node** headptr){
 // 释放空间
 void free_list(d_node** headptr){
     d_node* cur = *headptr;
-    d_node* prev = NULL;
+    d_node* next = NULL;
     while (cur != NULL) {
-        prev = cur->next;
+        next = cur->next;
         free(cur);
-        cur = prev;
+        cur = next;
         // free(prev);
     }
+    // 避免悬空指针
+    *headptr = NULL;
 }
 
 

@@ -2,10 +2,10 @@
 #include <ostream>
 #include "color.h"
 #include "funcs.h"
-#include "../program/linked_list.cpp"
-#include "../program/bin_search_tree.cpp"
-#include "../program/file_option.cpp"
-#include "../program/multi_thread_queue.cpp"
+#include "program/linked_list.cpp"
+#include "program/bin_search_tree.cpp"
+#include "program/file_option.cpp"
+#include "program/multi_thread_queue.cpp"
 
 using namespace std;
 

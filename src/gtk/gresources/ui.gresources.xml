@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gresources>
+  <gresource prefix="/home/mr-kechen/Documents/cpp/src/gtk/gresources">
+    <file>gtkbuilder_ui.ui</file>
+  </gresource>
+</gresources>

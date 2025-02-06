@@ -6,8 +6,8 @@
 CC = g++
 CFlAGS = -std=c++20
 CMODULE = -fmodules-ts
-SRC_DIR = ./src/pratice/
-BUILD_DIR = ./test/
+SRC_DIR = ./pratice/
+BUILD_DIR = ../../../test/
 
 # 目标：所有
 all: $(BUILD_DIR)helloworld

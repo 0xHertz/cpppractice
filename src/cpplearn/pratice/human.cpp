@@ -6,6 +6,7 @@ class Human {
     /* attbuit */
     public:
     int age;
+    static std::string sth;
     private:
     string name;
 
@@ -17,14 +18,18 @@ class Human {
     int get_age(){
         return age;
     }
+    static void print_sth();
 
     /* constructor & destructor */
     // 必须采用与类相同的名称，并且没有返回类型
     Human(){}
+    // 构造函数内赋值
     Human(int a,string n){
         name = n;
         age = a;
     }
+    // 初始化列表赋值
+    Human(string n) : name(n) {}
     // 析构函数，采用与类相同的名称，前面带有~ ，并且没有返回类型
     ~Human(){}
 
