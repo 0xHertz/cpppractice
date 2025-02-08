@@ -34,6 +34,8 @@ int main(int argc, char* argv[]){
         "smart ptr"
     };
     string program_name[] = {"linked list","bin smessageearch tree","file copy","multi_thread_queue"};
+    // 函数指针的结构：返回值类型(*指针变量名)(参数类型)
+    // 函数指针数组的结构：返回值类型(*指针变量名[])(参数类型)
     void (*funcs_body[])() = {
         helloWorld,typePractice,arrayPractice,funcPractice,loopPractice,gotoPractice,promotionPra,durofobject,qualifiersPra,inlineFunc,c20ifPratice,
         structPratice,unionPratice,bitOption,typedefPratice,enumPratice,threadPractice,mutexPratice,heapPratice,assertionsPra,
