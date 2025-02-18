@@ -1,6 +1,4 @@
-#include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkshortcut.h>
 #include "tfetextview.h"
 
 /*
@@ -45,14 +43,14 @@ static void tfe_text_view_dispose(GObject *gobject){
     G_OBJECT_CLASS(tfe_text_view_parent_class)->dispose(gobject);
 }
 // 类初始化函数
-static void tfe_text_view_class_init(_TfeTextViewClass *class){
-    GObjectClass *object_class = G_OBJECT_CLASS(class);
+static void tfe_text_view_class_init(TfeTextViewClass *clazz){
+    GObjectClass *object_class = G_OBJECT_CLASS(clazz);
     // 绑定dispose函数
     object_class->dispose = tfe_text_view_dispose;
     // 注册自定义信号
     tfe_text_view_signals[CHANGE_FILE] = g_signal_new("change-file",
-        G_TYPE_FROM_CLASS(class), // 类型
-        G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, // 信号标志
+        G_TYPE_FROM_CLASS(clazz), // 类型
+        (GSignalFlags)(G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS), // 信号标志
         0, // 类偏移量
         NULL, // 累加器
         NULL, // 累加器数据
@@ -60,8 +58,8 @@ static void tfe_text_view_class_init(_TfeTextViewClass *class){
         G_TYPE_NONE, // 返回类型
         0); // 参数个数
     tfe_text_view_signals[OPEN_RESPONSE] = g_signal_new("open_response",
-        G_TYPE_FROM_CLASS(class),// 类型
-        G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, // 信号标志
+        G_TYPE_FROM_CLASS(clazz),// 类型
+        (GSignalFlags)(G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS), // 信号标志
         0, // 类偏移量
         NULL, // 累加器
         NULL, // 累加器数据
@@ -89,7 +87,7 @@ GtkWidget *tfe_text_view_new_with_file(GFile *f){
     g_return_val_if_fail(G_IS_FILE(f), NULL);
 
     char *contents;
-    int length;
+    gsize length;
 
     // 打开文件
     if (! g_file_load_contents(f, NULL, &contents, &length, NULL,NULL)){

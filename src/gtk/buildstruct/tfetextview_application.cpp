@@ -22,7 +22,7 @@ app_open (GApplication *app, GFile ** files, gint n_files, gchar *hint) {
   GError *err = NULL;
   GtkBuilder *build;
 
-  build = gtk_builder_new_from_resource ("/com/github/ToshioCP/tfe/tfe.ui");
+  build = gtk_builder_new_from_resource ("/home/mr-kechen/Documents/cpp/src/gtk/gtkbuilder/gtkbuilder_ui.ui");
   win = GTK_WIDGET (gtk_builder_get_object (build, "win"));
   gtk_window_set_application (GTK_WINDOW (win), GTK_APPLICATION (app));
   nb = GTK_WIDGET (gtk_builder_get_object (build, "nb"));

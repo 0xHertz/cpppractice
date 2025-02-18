@@ -1,4 +1,3 @@
-#include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkshortcut.h>
 
