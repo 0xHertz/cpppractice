@@ -40,15 +40,19 @@ void static app_startup(GApplication *application){
     g_action_map_add_action(G_ACTION_MAP(app),G_ACTION(act_quit));
     g_signal_connect(act_quit,"activate",G_CALLBACK(quit_activated),app);
 
+    // 上方的菜单栏
     GMenu *menubar = g_menu_new();
+    // 上方菜单栏的菜单项
     GMenuItem *menu_item_menu = g_menu_item_new("Menu",NULL);
-    GMenu *submenu = g_menu_new();
+    // 菜单里的菜单分组
+    GMenu *menu = g_menu_new();
+    // 点击后展开的菜单的菜单项
     GMenuItem *menu_item_quit = g_menu_item_new("Quit","app.quit");
-    g_menu_append_item(submenu,menu_item_quit);
-    g_menu_item_set_submenu(menu_item_menu,G_MENU_MODEL(submenu));
+    g_menu_append_item(menu,menu_item_quit);
+    g_menu_item_set_submenu(menu_item_menu,G_MENU_MODEL(menu));
     g_menu_append_item(menubar,menu_item_menu);
     g_object_unref(menu_item_quit);
-    g_object_unref(submenu);
+    g_object_unref(menu);
     g_object_unref(menu_item_menu);
 
     gtk_application_set_menubar(app,G_MENU_MODEL(menubar));
