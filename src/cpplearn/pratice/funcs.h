@@ -119,6 +119,7 @@ void argmPractice(int argc, char* argv[]){
     }
 }
 
+// extern
 void durofobject(){
     // C17
     extern int ex_num; // define anywhere else
@@ -163,6 +164,7 @@ void c20ifPratice(){
     类的默认成员是 private 的，
     而结构体的默认成员是 public 的。
     因此，结构体也可以拥有构造函数、析构函数、成员函数等特性，和类没有区别。
+    在C中没有以上这些特性
 */
 struct S_User {
     int age;
@@ -177,6 +179,9 @@ void structPratice(){
 }
 
 // share the same addr, size of union object equals to the biggest item in union
+// 默认访问控制符为public
+// 可以含有构造函数、析构函数，没有成员函数
+// 无法继承和被继承
 union U_User {
     int age;
     char name[20];
@@ -404,9 +409,11 @@ class Teacher : public Human{
     void print_sth(){
         cout << "sub sth virtual func overridden" << endl;
     }
-    // 友元函数
+    // 友元函数，声明在类内部，但定义在类外部
     // 在其范围之外定义的类的函数，但有权访问该类的所有私有和受保护成员
     friend void print_school(Teacher t);
+    // 友元类,声明在类内部，但定义在类外部
+    friend class Student;
     // 重载运算符
     Teacher operator+(const Teacher& t){
         Teacher teacher;
@@ -419,11 +426,18 @@ class Teacher : public Human{
         Human::sth = "hello";
         cout << Human::sth << endl;
         // 可以使用作用域解析运算符 :: 来使用类的静态函数
-        Human::print_sth();
+        Human::static_print_sth();
+    }
+};
+class Student{
+    public:
+    void print_school(Teacher t){
+        // 友元类可以访问私有成员
+        cout << t.school << endl;
     }
 };
 // 可以使用作用域解析运算符 :: 来定义类的静态函数  和 构造函数
-void Human::print_sth() {
+void Human::static_print_sth() {
     cout << Human::sth << endl;
 }
 

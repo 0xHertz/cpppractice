@@ -18,7 +18,7 @@ class Human {
     int get_age(){
         return age;
     }
-    static void print_sth();
+    static void static_print_sth();
 
     /* constructor & destructor */
     // 必须采用与类相同的名称，并且没有返回类型
