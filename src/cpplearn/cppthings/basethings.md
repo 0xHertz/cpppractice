@@ -550,8 +550,70 @@ extern "C"在C中是语法错误，需要放在C++头文件中。
 ### struct
 ### union
 ### explicit（显式）
-explicit 修饰构造函数时，可以防止隐式转换和复制初始化
-explicit 修饰转换函数时，可以防止隐式转换，但按语境转换除外
+explicit 修饰构造函数时，可以防止隐式转换和复制初始化，只能用于直接初始化
+> ```cpp
+> #include <iostream>
+>
+> class MyClass {
+> public:
+>     explicit MyClass(int x) : value(x) {}
+>
+>     int getValue() const {
+>         return value;
+>     }
+>
+> private:
+>     int value;
+> };
+>
+> void printValue(const MyClass& obj) {
+>     std::cout << "Value: " << obj.getValue() << std::endl;
+> }
+>
+> int main() {
+>     MyClass obj1(10); // 直接初始化，合法
+>     printValue(obj1);
+>
+>     // MyClass obj2 = 20; // 错误：不能进行隐式转换
+>     MyClass obj2 = MyClass(20); // 显式转换，合法
+>     printValue(obj2);
+>
+>     return 0;
+> }
+> ```
+explicit 修饰转换运算符时，可以防止隐式转换，但按语境转换除外
+> ```cpp
+> #include <iostream>
+>
+> class MyClass {
+> public:
+>     explicit operator int() const {
+>         return value;
+>     }
+>
+>     MyClass(int x) : value(x) {}
+>
+>     int getValue() const {
+>         return value;
+>     }
+>
+> private:
+>     int value;
+> };
+> void printValue(int value) {
+>     std::cout << "Value: " << value << std::endl;
+> }
+>
+> int main() {
+>     MyClass obj(10);
+>     // int x = obj; // 错误：不能进行隐式转换
+>     int x = static_cast<int>(obj); // 显式转换，合法
+>     printValue(obj); // 错误：不能进行隐式转换
+>     printValue(static_cast<int>(obj)); // 显式转换，合法
+>
+>     return 0;
+> }
+> ```
 [示例代码](https://github.com/Light-City/CPlusPlusThings/blob/master/basic_content/explicit/explicit.cpp)
 ### friend
 友元函数是定义在类外部，但有权访问类的所有私有（private）成员和保护（protected）成员。尽管友元函数的原型有在类的定义中出现过，但是友元函数并不是成员函数。
