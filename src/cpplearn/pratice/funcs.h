@@ -442,6 +442,12 @@ void Human::static_print_sth() {
 }
 
 void classPratice(){
+    // 初始化方式：包括复制初始化（copy initialization）、直接初始化（direct initialization）和列表初始化（list initialization）
+    // 复制初始化： 复制初始化使用等号 `=` 进行初始化。编译器会尝试找到一个合适的构造函数或转换函数来完成初始化
+    // 直接初始化： 直接初始化使用括号 `()` 进行初始化。编译器会尝试找到一个合适的构造函数来完成初始化
+    Teacher kechen(22,"kechen");
+    // 列表初始化： 列表初始化使用花括号 `{}` 进行初始化。编译器会尝试找到一个合适的构造函数来完成初始化
+    Teacher chen{18,"kechen"};
     // Human user(18,"kechen");
     Teacher ke(22,"kehcen");
     ke.set_school("xinghua");
