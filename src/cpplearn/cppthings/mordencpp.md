@@ -320,3 +320,19 @@ class Base final {
 ```
 ### decltype
 [参考](./basethings.md)的decltype章节
+
+### 容器-结构与分类
+[示例代码/src/cpplearn/stl]()
+**序列式容器**包括：
+> array（C++2.0 新引入）、vector、deque、list、forward_list（C++2.0 新引入）
+
+**关联式容器**包括：
+> set/multiset、map/multimap
+
+无序容器（C++2.0 新引入，更换原先 hash_xxx 为 unordered_xxx）包括:
+> unordered_map/unordered_multimap、unordered_set/unordered_multiset
+### hash函数
+[示例代码](./mordencpp/hash.cpp)
+### tuple元组
+[示例代码](./mordencpp/tuple.cpp)
+在 C++ 中，`std::tuple` 是一个标准库提供的模板类，用于存储多个不同类型的值。它类似于结构体，但更加通用和灵活，因为它可以存储任意数量和类型的元素。`std::tuple` 是在 C++11 标准中引入的，位于 `<tuple>` 头文件中。
