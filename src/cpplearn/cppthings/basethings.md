@@ -42,7 +42,26 @@
 > void func(const int &a); // 传递的参数不可变
 > ```
 * const与类的关系
-**不是很懂**
+> * const 成员变量只能通过初始化列表进行初始化
+> * const 对象只能调用const成员函数const MyClass constObj(30);
+> const 成员函数指的是在函数声明和定义中都加上const关键字的成员函数，const成员函数不能修改类的成员变量，也不能调用非const成员函数
+> ```cpp
+> class A
+> {
+> public:
+>     A(int a) : _a(a) {}
+>     void func() const
+>     {
+>         // _a = 1; // error
+>     }
+>     void func()
+>     {
+>         // _a = 1; // ok
+>     }
+> private:
+>     const int _a;
+> };
+> ```
 ### static
 * 静态变量
 1. 函数中的静态变量

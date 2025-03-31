@@ -372,7 +372,7 @@ void namespacePra(){
 }
 
 /* 继承 */
-// public 指定继承的属性和方法为public，否则默认private，但是父类中private还是private
+// public 指定继承的属性和方法为public，否则默认private，虽然是public但是父类中private还是private
 class Teacher : public Human{
     // 私有属性(默认)
     // 也可以显示表示
